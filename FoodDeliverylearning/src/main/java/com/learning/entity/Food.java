@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -26,35 +27,21 @@ import lombok.NoArgsConstructor;
 @Data 
 @NoArgsConstructor 
 @AllArgsConstructor
+@Table(name = "food")
 public class Food {
 	
-//	   @Id //Id must be auto generated 
-//	   
-//	   private int foodId;
-//	   @NotBlank
-//	   private String foodName; 
-//	   @NotNull
-//	   private int foodCost; 
 	@Id
 	
-	private String foodId;
+	private String Id;
 	
 	
 	@Size(max=50)
 	@NotBlank
 	private String foodName;
-	
-	
+	@Enumerated(EnumType.STRING)
+	private EFOOD foodType;
 	private String description;
 	private String foodPic;
-
 	
-	
-	@ManyToMany
-	@JoinTable(name = "food_foodtypes", joinColumns = @JoinColumn(name = "foodId"), 
-			inverseJoinColumns = @JoinColumn(name = "foodTypeId"))
-	private Set<FoodType> foodTypes = new HashSet<>();
-	
-
 
 }
