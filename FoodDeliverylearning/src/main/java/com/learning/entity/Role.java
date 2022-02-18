@@ -1,6 +1,6 @@
 package com.learning.entity;
 
-import javax.annotation.Generated;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -12,18 +12,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-//@AllArgsConstructor
+@Data
 @NoArgsConstructor
-//@Data
+@AllArgsConstructor
 @Entity
-
-public class FoodType {
+public class Role {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int foodTypeId;
+	private int roleId;
 	
 	@Enumerated(EnumType.STRING)
-	private EFOOD foodType;
+	@Column(length = 30)
+	private EROLE roleName;
 
 }

@@ -1,7 +1,5 @@
 package com.learning.entity;
 
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -11,12 +9,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -25,18 +18,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Setter
 @Getter
-@ToString
 @EqualsAndHashCode
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "login")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "userName")
-
-
 public class Login {
+	
 	@Id
 	@Email
 	private String email;
@@ -47,4 +38,5 @@ public class Login {
 	@JsonIgnore
 	@JoinColumn(name = "regId")
 	private Register register;
+
 }

@@ -14,33 +14,43 @@ import com.learning.service.LoginService;
 public class LoginServiceImpl implements LoginService {
 	
 	@Autowired
-	private LoginRepository loginRepository;
+	private LoginRepository loginRepo;
 
 	@Override
 	public Login addCredentials(Login login) {
 		// TODO Auto-generated method stub
-		return loginRepository.save(login);
+		return loginRepo.save(login);
 	}
 
 	@Override
 	public String deleteCredentials(String email) throws IdNotFoundException {
 		// TODO Auto-generated method stub
-		Optional<Login> optional = loginRepository.findByEmail(email);
+		Optional<Login> optional = loginRepo.findByEmail(email);
 		if (optional.isEmpty())
 			throw new IdNotFoundException("Record not found");
 		else {
-			loginRepository.deleteByEmail(email);
+			loginRepo.deleteByEmail(email);
 			return "Success";
 		}
 	}
 	
 	@Override
 	public Login updateCredentials(Login login, String email) throws IdNotFoundException {
-		if (loginRepository.findByEmail(email).isEmpty()) {
+		if (loginRepo.findByEmail(email).isEmpty()) {
 			throw new IdNotFoundException("Record not found");
 		}
-		return loginRepository.save(login);
+		return loginRepo.save(login);
 	}
 
+	@Override
+	public String validateCredentials(Login login) {
+		// TODO Auto-generated method stub
+		Optional<Login> optional = loginRepo.findByEmail(login.getEmail());
+		if (optional.isEmpty())
+			return "Fail";
+		if (optional.get().getPassword().equals(login.getPassword()))
+			return "Success";
+		return "Fail";
+	}
 
 }

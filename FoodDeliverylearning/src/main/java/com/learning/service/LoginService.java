@@ -7,6 +7,7 @@ public interface LoginService {
 	
 	public Login addCredentials(Login login);
 	public String deleteCredentials(String email) throws IdNotFoundException;
+	public String validateCredentials(Login login);
 	public Login updateCredentials(Login login, String email) throws IdNotFoundException;
 
 }
